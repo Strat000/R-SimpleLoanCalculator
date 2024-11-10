@@ -1,4 +1,9 @@
-# Loan Calculator in R with Input Validation and Continuous Loop
+// ********************
+// Last names: Foo
+// Language: R
+// Paradigm(s): Procedural
+// ********************
+
 
 # Function to validate user input
 validate_input <- function(prompt_text) {
@@ -55,7 +60,6 @@ repeat {
   cat("Monthly Repayment: PHP", round(result$monthly_repayment, 2), "\n")
   cat("Total Interest: PHP", round(result$total_interest, 2), "\n")
   
-  # Improved prompt for continuing or exiting the program
   repeat {
     continue <- readline(prompt = "\nDo you want to perform another calculation? (yes/no): ")
     continue <- tolower(trimws(continue))  # Normalize and trim whitespace
