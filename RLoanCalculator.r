@@ -1,4 +1,4 @@
-# Loan Calculator in R with Input Validation
+# Loan Calculator in R with Input Validation and Continuous Loop
 
 # Function to validate user input
 validate_input <- function(prompt_text) {
@@ -36,17 +36,36 @@ calculate_loan <- function(loan_amount, annual_interest_rate, loan_term_years) {
   )
 }
 
-# Input prompts with validation
-loan_amount <- validate_input("Enter the loan amount (PHP): ")
-annual_interest_rate <- validate_input("Enter the annual interest rate (%): ")
-loan_term_years <- validate_input("Enter the loan term (years): ")
-
-# Perform calculations
-result <- calculate_loan(loan_amount, annual_interest_rate, loan_term_years)
-
-# Display the results
-cat("\nLoan Amount: PHP", result$loan_amount, "\n")
-cat("Annual Interest Rate:", result$annual_interest_rate, "%\n")
-cat("Loan Term:", result$loan_term_months, "months\n")
-cat("Monthly Repayment: PHP", round(result$monthly_repayment, 2), "\n")
-cat("Total Interest: PHP", round(result$total_interest, 2), "\n")
+# Main loop for the program
+repeat {
+  cat("\n--- Simple Loan Calculator ---\n")
+  
+  # Input prompts with validation
+  loan_amount <- validate_input("Enter the loan amount (PHP): ")
+  annual_interest_rate <- validate_input("Enter the annual interest rate (%): ")
+  loan_term_years <- validate_input("Enter the loan term (years): ")
+  
+  # Perform calculations
+  result <- calculate_loan(loan_amount, annual_interest_rate, loan_term_years)
+  
+  # Display the results
+  cat("\nLoan Amount: PHP", result$loan_amount, "\n")
+  cat("Annual Interest Rate:", result$annual_interest_rate, "%\n")
+  cat("Loan Term:", result$loan_term_months, "months\n")
+  cat("Monthly Repayment: PHP", round(result$monthly_repayment, 2), "\n")
+  cat("Total Interest: PHP", round(result$total_interest, 2), "\n")
+  
+  # Improved prompt for continuing or exiting the program
+  repeat {
+    continue <- readline(prompt = "\nDo you want to perform another calculation? (yes/no): ")
+    continue <- tolower(trimws(continue))  # Normalize and trim whitespace
+    if (continue %in% c("yes", "y")) {
+      break  # Continue the main loop for another calculation
+    } else if (continue %in% c("no", "n")) {
+      cat("\nExiting the program. Goodbye!\n")
+      quit(save = "no")  # Exit the program
+    } else {
+      cat("Invalid input. Please type 'yes' or 'no'.\n")
+    }
+  }
+}
