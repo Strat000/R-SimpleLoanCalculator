@@ -1,4 +1,4 @@
-# Loan Calculator in R
+# Loan Calculator in R with Input Validation
 
 # Function to validate user input
 validate_input <- function(prompt_text) {
@@ -36,10 +36,10 @@ calculate_loan <- function(loan_amount, annual_interest_rate, loan_term_years) {
   )
 }
 
-# Input prompts
-loan_amount <- as.numeric(readline(prompt = "Enter the loan amount (PHP): "))
-annual_interest_rate <- as.numeric(readline(prompt = "Enter the annual interest rate (%): "))
-loan_term_years <- as.numeric(readline(prompt = "Enter the loan term (years): "))
+# Input prompts with validation
+loan_amount <- validate_input("Enter the loan amount (PHP): ")
+annual_interest_rate <- validate_input("Enter the annual interest rate (%): ")
+loan_term_years <- validate_input("Enter the loan term (years): ")
 
 # Perform calculations
 result <- calculate_loan(loan_amount, annual_interest_rate, loan_term_years)
@@ -50,4 +50,3 @@ cat("Annual Interest Rate:", result$annual_interest_rate, "%\n")
 cat("Loan Term:", result$loan_term_months, "months\n")
 cat("Monthly Repayment: PHP", round(result$monthly_repayment, 2), "\n")
 cat("Total Interest: PHP", round(result$total_interest, 2), "\n")
-
