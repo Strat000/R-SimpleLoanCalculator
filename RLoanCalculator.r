@@ -1,5 +1,17 @@
 # Loan Calculator in R
 
+# Function to validate user input
+validate_input <- function(prompt_text) {
+  while (TRUE) {
+    user_input <- as.numeric(readline(prompt = prompt_text))
+    if (!is.na(user_input) && user_input > 0) {
+      return(user_input)
+    } else {
+      cat("Invalid input. Please enter a positive number.\n")
+    }
+  }
+}
+
 # Function to calculate monthly repayment and total interest
 calculate_loan <- function(loan_amount, annual_interest_rate, loan_term_years) {
   # Monthly interest rate
